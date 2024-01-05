@@ -1,0 +1,38 @@
+<!-- home.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let territory of territories">
+      <ion-item (click)="toggleChildren(territory)">
+        <ion-icon name="caret-forward" *ngIf="territory.children && territory.children.length && territory.isOpen"></ion-icon>
+        <ion-icon name="caret-down" *ngIf="territory.children && territory.children.length && !territory.isOpen"></ion-icon>
+        {{ territory.name }}
+      </ion-item>
+      <ng-container *ngIf="territory.isOpen && territory.children && territory.children.length">
+        <ion-list>
+          <ng-container *ngFor="let child of territory.children">
+            <ion-item (click)="toggleChildren(child)" style="padding-left: 16px;">
+              <ion-icon name="caret-forward" *ngIf="child.children && child.children.length && child.isOpen"></ion-icon>
+              <ion-icon name="caret-down" *ngIf="child.children && child.children.length && !child.isOpen"></ion-icon>
+              {{ child.name }}
+              <ng-container *ngIf="child.isOpen && child.children && child.children.length">
+                <ion-list style="padding-left: 16px;">
+                  <ion-item *ngFor="let nestedChild of child.children">
+                    {{ nestedChild.name }}
+                  </ion-item>
+                </ion-list>
+              </ng-container>
+            </ion-item>
+          </ng-container>
+        </ion-list>
+      </ng-container>
+    </ng-container>
+  </ion-list>
+</ion-content>

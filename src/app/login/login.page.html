@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-grid style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <ion-row>
+      <ion-col size="12" size-md="15" size-lg="15">
+        <ion-card style="width: 100%; padding: 2%;">
+          <ion-card-header>
+            <ion-card-title style="text-align: center; font-size: 32px;">Login</ion-card-title>
+            <p *ngIf="loginFailed" style="color: red; margin: 10px; text-align: center;">Invalid username or password</p>
+          </ion-card-header>
+
+          <ion-card-content >
+            <form>
+              <ion-item>
+                <ion-label position="floating">Username</ion-label>
+                <ion-input type="text" name="username" required [(ngModel)]="username"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input type="password" name="password" required [(ngModel)]="password"></ion-input>
+              </ion-item>
+
+              <ion-button expand="full" type="button" (click)="onLoginButtonClick()" style="margin-top: 10%;">Login</ion-button>
+
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
